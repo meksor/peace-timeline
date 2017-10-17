@@ -1,7 +1,7 @@
 const yearMs = (1000 * 60 * 60 * 24 * 365);
 
 class Timeline {
-    constructor(element, data) {
+    constructor(element, data, textColor) {
         element.classList.add('timeline');
         
         const minDt = new Date(0);
@@ -43,7 +43,8 @@ class Timeline {
 
                 svg.append("svg:text")
                     .text(i.toString())
-                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");
+                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")")
+                    .attr("fill", textColor);
                 break;
             } else if (i%10==0) {
             svg.append("svg:rect")
@@ -54,7 +55,8 @@ class Timeline {
 
             svg.append("svg:text")
                 .text(i.toString())
-                .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");
+                .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")")
+                .attr("fill", textColor);                
 
             }
         }
@@ -67,7 +69,9 @@ class Timeline {
 
       svg.selectAll(".tick")
         .style("font", "14px arial")
-        .style("font-weight", "bold")
+        .style("font-weight", "bold")     
+        .style("color", textColor)           
+        
 
    /*         
             .attr("width", 10)

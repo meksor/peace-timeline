@@ -12,9 +12,9 @@ var demo = {
 	speed: 1,
 	// - color of particles
 	color: {
-		r: '104',
-		g: '120',
-		b: '148',
+		r: '255',
+		g: '0',
+		b: '0',
 		a: '0.5'
 	},
 	
@@ -57,16 +57,6 @@ demo.init = function() {
 		demo.rain_color_clear = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0)';
 		demo.resize();
 		Ticker.addListener(demo.step);
-		
-		// 
-		// fade out instructions after a few seconds
-		var instructions = document.getElementById('instructions');
-		setTimeout(function() {
-			instructions.style.opacity = 0;
-			setTimeout(function(){
-				instructions.parentNode.removeChild(instructions);
-			}, 2000);
-		}, 4000);
 	}
 }
 
@@ -375,6 +365,7 @@ var checkScrollSpeed = (function(settings){
 // listen to "scroll" event
 window.onscroll = function(){
   demo.speed = clamp(Math.abs(checkScrollSpeed() / 5), 0.01, 6)
+  demo.wind += clamp(Math.abs(checkScrollSpeed() / 5), 0.01, 6)
 };
 
 
