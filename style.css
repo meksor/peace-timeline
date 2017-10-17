@@ -1,0 +1,9 @@
+svg {
+    font-size: 2em;
+}
+g {
+    overflow: visible;
+}
+text {
+    z-index: 20;
+}
