@@ -1,3 +1,6 @@
+body{
+    margin: 0; 
+}
 svg {
     font-size: 2em;
 }
@@ -7,3 +10,4 @@ g {
 text {
     z-index: 20;
 }
+

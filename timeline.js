@@ -1,15 +1,21 @@
+const yearMs = (1000 * 60 * 60 * 24 * 365);
+
 class Timeline {
     constructor(element, data) {
         element.classList.add('timeline');
         
-        const minDt = new Date(0)
-        const maxDt = new Date()
-        minDt.setFullYear(1, 0, 0)
+        const minDt = new Date(0);
+        minDt.setFullYear(0);
+        const maxDt = new Date();
 
-        const years = ((maxDt - minDt) / (1000 * 60 * 60 * 24 * 365)) // milliseconds
-
+        const years = ((maxDt - minDt) / yearMs) -2; // milliseconds
         const w = (years * 12 * 3), // 3px / month
-              h = 500;
+              h = window.innerHeight;
+            
+        console.log(maxDt)
+        console.log(minDt)
+        console.log(maxDt - minDt)
+        console.log(years)
 
         const x = d3.scaleTime()
             .range([0, w])
@@ -24,56 +30,71 @@ class Timeline {
         })
 
         const svg = d3.select(element).append("svg:svg")
-            .attr("width", w)
-            .attr("height", h+50);
+            .attr("width", w+1)
+            .attr("height", h-20);
       
-        for (var i=0; i<(years/10); i++) {
+        for (var i=0; i<(years); i++) {
+            if ((Math.ceil(years/10) * 10) - i == 10) {
+                svg.append("svg:rect")
+                    .attr("class", "x axis")
+                    .attr("width", ((12 * 3 * (years - i)) - 20))
+                    .attr("height", 5)
+                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 10) + ")")
+
+                svg.append("svg:text")
+                    .text(i.toString())
+                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");
+                break;
+            } else if (i%10==0) {
             svg.append("svg:rect")
                 .attr("class", "x axis")
-                .attr("width", (12 * 3 * 10))
+                .attr("width", (12 * 3 * 10) - 50)
                 .attr("height", 5)
-                .attr("transform", "translate(" + (12 * 3 * 10) * i + "," + h + ")");
+                .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 10) + ")")
+
+            svg.append("svg:text")
+                .text(i.toString())
+                .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");
+
+            }
         }
 
 
         svg.append("svg:g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + h + ")")
+            .attr("transform", "translate(0," + (h/2) + ")")
             .call(xAxis);
 
-          svg.selectAll(".tick")
-            .append("defs")
-            .append("mask")
-            .append("rect")
-            
+      svg.selectAll(".tick")
+        .style("font", "14px arial")
+        .style("font-weight", "bold")
+
+   /*         
             .attr("width", 10)
             .attr("transform", "translate(-10,0)")
             .attr("height", 5)
             .attr("fill", "black");
-        
-          svg.selectAll("text")
+
+        svg.selectAll("text")
             .style("text-anchor", "end")
-            .attr("dy", "-2.5");
+            .attr("dy", "-2.5");*/
 
-        let intervalData = data.filter(_ => _.type === Timeline.TYPE.INTERVAL)
+        let intervalData = data.filter(_ => _.type === Timeline.TYPE.INTERVAL);
 
-        let intervals = svg.selectAll("rect")
+        let intervals = svg.append("svg:rect")
             .data(intervalData)
             .enter()
             .append('svg:rect')
             .attr('height', 5)
             .attr('fill', d => {return d.color})
             .attr('class', 'item')
-            .attr("transform", d => {return `translate(${this.date(d.from)}, ${h-20})`})
+            .attr("transform", d => {return `translate(${this.date(d.from)}, ${h-30})`})
             .attr('width', d => (this.date(d.to) - this.date(d.from)));
 
-        console.log ("drawing");
 
     }
     date(d) {
-        let res = ((new Date(d) / (1000 * 60 * 60 * 24 * 365)) * 12 * 3)+ (new Date(0).setFullYear(1, 0, 0) * -1)
-        console.log(res)
-        return (((new Date(d) / (1000 * 60 * 60 * 24 * 365)) * 12 * 3) + ((new Date(0).setFullYear(1, 0, 0) / (1000 * 60 * 60 * 24 * 365)) * 12 * 3) * -1)
+        return (((new Date(d) / yearMs) * 12 * 3) + ((new Date(0).setFullYear(1, 0, 0) / yearMs) * 12 * 3) * -1)
     }
     getPointMinDt(p) {
         return p.type === Timeline.TYPE.POINT ? new Date(p.at) : new Date(p.from);
