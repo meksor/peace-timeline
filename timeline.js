@@ -64,11 +64,6 @@ class Timeline {
             .attr("transform", "translate(0," + (h/2) + ")")
             .attr('fill', 'rgba(0,0,0,0)')
             .call(xAxis);
-
-        svg.selectAll(".tick")
-            .style("font", "14px arial")
-            .style("font-weight", "bold")
-
    /*         
             .attr("width", 10)
             .attr("transform", "translate(-10,0)")
@@ -86,15 +81,23 @@ class Timeline {
         console.log(intervalData)
         
         let intervals = svg.selectAll("#intervals")
-            .data(intervalData)
+
+        intervals.data(intervalData)
             .enter()
-            .append("rect")
+            .append('rect')
             .attr('height', 5)
             .attr('class', 'item')
             .attr('fill', d => (d.color))
-            .attr("transform", d => (`translate(${this.date(d.from)}, ${h/2 - 20})`))
+            .attr('transform', d => (`translate(${this.date(d.from)}, ${h/2 - 20})`))
             .attr('width', d => (this.date(d.to) - this.date(d.from)));
-
+        
+        intervals.data(intervalData)
+            .enter()
+            .append('svg:text')
+            .text(d => (d.label))
+            .attr('class', 'label')
+            .attr('fill', d => (d.color))
+            .attr("transform", d => (`translate(${this.date(d.from) + ((this.date(d.to) - this.date(d.from))/2)}, ${h/2 - 40})`));
 
     }
     date(d) {

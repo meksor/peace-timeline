@@ -8,11 +8,14 @@ svg {
     color: #ffffff;
     fill: #ffffff;
 }
-g {
+rect, g {
     overflow: visible;
 }
-text {
-    z-index: 20;
+.tick > text {
     fill: #ffffff;
 }
-
+.tick, text {
+    font: 14px arial;
+    font-weight: bold;
+    text-anchor: middle;
+}
