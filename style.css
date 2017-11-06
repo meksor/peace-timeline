@@ -4,10 +4,15 @@ body{
 svg {
     font-size: 2em;
 }
+.axis {
+    color: #ffffff;
+    fill: #ffffff;
+}
 g {
     overflow: visible;
 }
 text {
     z-index: 20;
+    fill: #ffffff;
 }
 

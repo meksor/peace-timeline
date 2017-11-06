@@ -11,11 +11,6 @@ class Timeline {
         const years = ((maxDt - minDt) / yearMs) -2; // milliseconds
         const w = (years * 12 * 3), // 3px / month
               h = window.innerHeight;
-            
-        console.log(maxDt)
-        console.log(minDt)
-        console.log(maxDt - minDt)
-        console.log(years)
 
         const x = d3.scaleTime()
             .range([0, w])
@@ -37,37 +32,42 @@ class Timeline {
             if ((Math.ceil(years/10) * 10) - i == 10) {
                 svg.append("svg:rect")
                     .attr("class", "x axis")
-                    .attr("width", ((12 * 3 * (years - i)) - 20))
+                    .attr("width", ((12 * 3 * (years - i)) - 25))
                     .attr("height", 5)
                     .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 10) + ")")
 
-                svg.append("svg:text")
+                /*svg.append("svg:text")
                     .text(i.toString())
-                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");
+                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");*/
                 break;
             } else if (i%10==0) {
-            svg.append("svg:rect")
-                .attr("class", "x axis")
-                .attr("width", (12 * 3 * 10) - 50)
-                .attr("height", 5)
-                .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 10) + ")")
+                svg.append("svg:rect")
+                    .attr("class", "x axis")
+                    .attr("width", (12 * 3 * 10) - 50)
+                    .attr("height", 5)
+                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 10) + ")")
 
-            svg.append("svg:text")
-                .text(i.toString())
-                .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");
+                /*svg.append("svg:text")
+                    .text(i.toString())
+                    .attr('x', (((12 * 3) * i) - 25) )
+                    .attr('y', ((h/2) + 10))
+                    .style("font", "14px arial")
+                    .style("font-weight", "bold")
+                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");*/
 
             }
         }
 
 
         svg.append("svg:g")
-            .attr("class", "x axis")
+            .attr("class", "x")
             .attr("transform", "translate(0," + (h/2) + ")")
+            .attr('fill', 'rgba(0,0,0,0)')
             .call(xAxis);
 
-      svg.selectAll(".tick")
-        .style("font", "14px arial")
-        .style("font-weight", "bold")
+        svg.selectAll(".tick")
+            .style("font", "14px arial")
+            .style("font-weight", "bold")
 
    /*         
             .attr("width", 10)
@@ -79,16 +79,20 @@ class Timeline {
             .style("text-anchor", "end")
             .attr("dy", "-2.5");*/
 
+        let intervalContainer = svg.append('rect') 
+            .attr('id', 'intervals')
+    
         let intervalData = data.filter(_ => _.type === Timeline.TYPE.INTERVAL);
-
-        let intervals = svg.append("svg:rect")
+        console.log(intervalData)
+        
+        let intervals = svg.selectAll("#intervals")
             .data(intervalData)
             .enter()
-            .append('svg:rect')
+            .append("rect")
             .attr('height', 5)
-            .attr('fill', d => {return d.color})
             .attr('class', 'item')
-            .attr("transform", d => {return `translate(${this.date(d.from)}, ${h-30})`})
+            .attr('fill', d => (d.color))
+            .attr("transform", d => (`translate(${this.date(d.from)}, ${h/2 - 20})`))
             .attr('width', d => (this.date(d.to) - this.date(d.from)));
 
 

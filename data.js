@@ -24,7 +24,7 @@ const DATA = [
         type: Timeline.TYPE.INTERVAL,
         from: "0200-05-14",
         to: "0300-05-14",
-        color: "rgba(123, 233, 32, .1)"
+        color: "rgba(123, 233, 32, 1)"
     }, {
         label: 'Interval',
         type: Timeline.TYPE.INTERVAL,
