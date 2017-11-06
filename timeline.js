@@ -39,6 +39,7 @@ class Timeline {
                 /*svg.append("svg:text")
                     .text(i.toString())
                     .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");*/
+
                 break;
             } else if (i%10==0) {
                 svg.append("svg:rect")
@@ -55,6 +56,7 @@ class Timeline {
                     .style("font-weight", "bold")
                     .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");*/
 
+
             }
         }
 
@@ -64,6 +66,7 @@ class Timeline {
             .attr("transform", "translate(0," + (h/2) + ")")
             .attr('fill', 'rgba(0,0,0,0)')
             .call(xAxis);
+
    /*         
             .attr("width", 10)
             .attr("transform", "translate(-10,0)")
