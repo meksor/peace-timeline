@@ -1,7 +1,7 @@
 const yearMs = (1000 * 60 * 60 * 24 * 365);
 
 class Timeline {
-    constructor(element, data) {
+    constructor(element, INTERVALS, EVENTS) {
         element.classList.add('timeline');
         
         const minDt = new Date(0);
@@ -75,23 +75,20 @@ class Timeline {
             .attr("dy", "-2.5");*/
 
         let intervalContainer = svg.append('rect') 
-            .attr('id', 'intervals')
-    
-        let intervalData = data.filter(_ => _.type === Timeline.TYPE.INTERVAL);
-        console.log(intervalData)
-        
-        let intervals = svg.selectAll("#intervals")
+            .attr('id', 'intervals');
 
-        intervals.data(intervalData)
+        svg.selectAll("rect #intervals")
+            .data(INTERVALS)
             .enter()
             .append('rect')
             .attr('height', 5)
             .attr('class', 'item')
             .attr('fill', d => (d.color))
             .attr('transform', d => (`translate(${this.date(d.from)}, ${h/2 - 20})`))
-            .attr('width', d => (this.date(d.to) - this.date(d.from)));
+            .attr('width', d => {console.log(this.date(d.to) - this.date(d.from)); return this.date(d.to) - this.date(d.from)});
         
-        intervals.data(intervalData)
+        svg.selectAll("rect #intervals")
+            .data(INTERVALS)
             .enter()
             .append('svg:text')
             .text(d => (d.label))
