@@ -175,6 +175,7 @@ demo.draw = function() {
 	}
 	ctx.lineWidth = Rain.width * dpr;
 	ctx.strokeStyle = demo.rain_color;
+
 	ctx.stroke();
 	
 	// draw splash drops (just copy pre-rendered canvas)

@@ -1,71 +1,143 @@
 const EVENTS = [
     {
-        label: 'I\'m a label',
+        label: 'Battle of Wogastisburg',
+        description: 'Fatal loss of the Franconians against the slav ruler Samo',
         type: Timeline.TYPE.POINT,
-        at: "2016-09-14",
-        color: "rgba(123, 233, 32, 1)"
+        at: "0631-06-15",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'I\'m a label',
+        label: 'Battle of Pressburg',
+        description: 'Hungary triumphs over Bavaria',
         type: Timeline.TYPE.POINT,
-        at: "2001-08-14",
-        color: "rgba(123, 233, 32, 1)"
+        at: "0907-06-05",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'I\'m a label',
+        label: 'Battle at the Lechfeld',
+        description: 'Otto the great beats the Hungarians. End of the Hungarian invasions.',
         type: Timeline.TYPE.POINT,
-        at: "2000-06-24",
-        color: "rgba(123, 233, 32, 1)"
+        at: "0955-07-24",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'I\'m a label',
+        label: 'Ita von Formbach-Ratelnberg joins the crusade.',
+        description: 'Ita von Formbach-Ratelnberg, mother of Margrave Leopold III, joins the first crusade. She never returns.',
         type: Timeline.TYPE.POINT,
-        at: "1300-05-14",
-        color: "rgba(123, 233, 32, 1)"
+        at: "1098-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'I\'m a label',
+        label: 'Heinrich II. Jasomirgott and his brother Otto von Freising join the crusade.',
+        description: 'Heinrich II. Jasomirgott and his brother Otto von Freising join the second crusade. Heinrich later marries a byzantine princess.',
         type: Timeline.TYPE.POINT,
-        at: "0200-01-10",
-        color: "rgba(123, 212, 50, .5)"
+        at: "1147-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'I\'m a label',
+        label: 'Herzog Leopold V. takes command of the entire german forces.',
+        description: 'Herzog Leopold V. leads the austrian part of the crusade. After Emperor Friedrich dies in Anatolia, Herzog Leopold takes command of the entire german forces.',
         type: Timeline.TYPE.POINT,
-        at: "0020-02-20",
-        color: "rgba(20, 154, 190, 1)"
-    }
+        at: "1190-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Battle at the Leitha',
+        description: 'Friedrich II beats the Hungarians and their allies.',
+        type: Timeline.TYPE.POINT,
+        at: "1246-06-15",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Battle of Leitzersdorf',
+        description: 'Hungarians defeat Emperor Friedrich III.',
+        type: Timeline.TYPE.POINT,
+        at: "1484-04-11",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Battle of Bicocca',
+        description: 'The Habsburgs defeat France.',
+        type: Timeline.TYPE.POINT,
+        at: "1522-04-29",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Battle of Pavia',
+        description: 'The Habsburgs defeat France.',
+        type: Timeline.TYPE.POINT,
+        at: "1525-02-24",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Battle of Gravelines',
+        description: 'The Habsburgs defeat France.',
+        type: Timeline.TYPE.POINT,
+        at: "1558-07-13",
+        color: "rgba(255, 0, 0, 1)"
+    },  	
 ];
-
+ 
 const INTERVALS = [{
-        label: 'Early Interval',
+        label: 'Hungarian Wars',
         type: Timeline.TYPE.INTERVAL,
-        from: "0100-02-14",
-        to: "0200-02-12",
-        color: "rgba(93, 253, 132, 1)"
+        from: "0907-01-01",
+        to: "0970-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Dummy Interval',
+        label: 'The First Crusade',
         type: Timeline.TYPE.INTERVAL,
-        from: "0200-05-14",
-        to: "0300-05-24",
-        color: "rgba(123, 233, 32, 1)"
+        from: "1096-01-01",
+        to: "1099-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'One Hundred Years',
+        label: 'The Second Crusade',
         type: Timeline.TYPE.INTERVAL,
-        from: "0300-05-14",
-        to: "0400-05-24",
-        color: "rgba(153, 123, 22, 1)"
+        from: "1146-01-01",
+        to: "1149-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Interval',
+        label: 'The Third Crusade',
         type: Timeline.TYPE.INTERVAL,
-        from: "0500-05-07",
-        to: "0535-07-14",
-        color: "rgba(40, 99, 20, 1)"
+        from: "1189-01-01",
+        to: "1192-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, { 
+        label: 'First Austrian Turk War',
+        type: Timeline.TYPE.INTERVAL,
+        from: "1526-01-01",
+        to: "1555-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Interval',
+        label: 'Second Austrian Turk War',
         type: Timeline.TYPE.INTERVAL,
-        from: "2007-05-14",
-        to: "2009-05-14",
-        color: "rgba(123, 233, 32, .8)"
+        from: "1566-01-01",
+        to: "1568-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Interval',
+        label: 'Third Austrian Turk War',
         type: Timeline.TYPE.INTERVAL,
-        from: "1305-01-14",
-        to: "1350-05-29",
-        color: "rgba(204, 102, 32, 1)"
+        from: "1593-01-01",
+        to: "1606-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Fourth Austrian Turk War',
+        type: Timeline.TYPE.INTERVAL,
+        from: "1663-01-01",
+        to: "1664-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Fifth Austrian Turk War',
+        type: Timeline.TYPE.INTERVAL,
+        from: "1683-01-01",
+        to: "1699-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Sixth Austrian Turk War',
+        type: Timeline.TYPE.INTERVAL,
+        from: "1714-01-01",
+        to: "1718-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Seventh Austrian Turk War',
+        type: Timeline.TYPE.INTERVAL,
+        from: "1735-01-01",
+        to: "1769-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Eighth Austrian Turk War',
+        type: Timeline.TYPE.INTERVAL,
+        from: "1787-01-01",
+        to: "1792-01-01",
+        color: "rgba(255, 0, 0, 1)"
     }]

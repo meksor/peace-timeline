@@ -27,78 +27,63 @@ class Timeline {
         const svg = d3.select(element).append("svg:svg")
             .attr("width", w+1)
             .attr("height", h-20);
-      
+
+        // fake axis
         for (var i=0; i<(years); i++) {
-            if ((Math.ceil(years/10) * 10) - i == 10) {
-                svg.append("svg:rect")
-                    .attr("class", "x axis")
-                    .attr("width", ((12 * 3 * (years - i)) - 25))
-                    .attr("height", 5)
-                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 10) + ")")
-
-                /*svg.append("svg:text")
-                    .text(i.toString())
-                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");*/
-
-                break;
-            } else if (i%10==0) {
+            if (i%10==0) {
                 svg.append("svg:rect")
                     .attr("class", "x axis")
                     .attr("width", (12 * 3 * 10) - 50)
                     .attr("height", 5)
-                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 10) + ")")
-
-                /*svg.append("svg:text")
-                    .text(i.toString())
-                    .attr('x', (((12 * 3) * i) - 25) )
-                    .attr('y', ((h/2) + 10))
-                    .style("font", "14px arial")
-                    .style("font-weight", "bold")
-                    .attr("transform", "translate(" + (((12 * 3) * i) - 25) + "," + ((h/2) + 10) + ")");*/
-
+                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 11) + ")")
 
             }
         }
 
-
+        // real axis
         svg.append("svg:g")
             .attr("class", "x")
             .attr("transform", "translate(0," + (h/2) + ")")
-            .attr('fill', 'rgba(0,0,0,0)')
-            .call(xAxis);
+            .call(xAxis)
 
-   /*         
-            .attr("width", 10)
-            .attr("transform", "translate(-10,0)")
-            .attr("height", 5)
-            .attr("fill", "black");
-
-        svg.selectAll("text")
-            .style("text-anchor", "end")
-            .attr("dy", "-2.5");*/
-
-        let intervalContainer = svg.append('rect') 
-            .attr('id', 'intervals');
-
+        // intervals
         svg.selectAll("rect #intervals")
             .data(INTERVALS)
             .enter()
             .append('rect')
             .attr('height', 5)
-            .attr('class', 'item')
+            .attr('class', 'interval')
             .attr('fill', d => (d.color))
             .attr('transform', d => (`translate(${this.date(d.from)}, ${h/2 - 20})`))
-            .attr('width', d => {console.log(this.date(d.to) - this.date(d.from)); return this.date(d.to) - this.date(d.from)});
+            .attr('width', d => {return this.date(d.to) - this.date(d.from)});
         
         svg.selectAll("rect #intervals")
             .data(INTERVALS)
             .enter()
             .append('svg:text')
             .text(d => (d.label))
-            .attr('class', 'label')
+            .attr('class', 'interval-label')
             .attr('fill', d => (d.color))
-            .attr("transform", d => (`translate(${this.date(d.from) + ((this.date(d.to) - this.date(d.from))/2)}, ${h/2 - 40})`));
-
+            .attr("transform", d => {console.log((d.from)); return `translate(${this.date(d.from) + ((this.date(d.to) - this.date(d.from))/2)}, ${h/2 - 40})`});
+        
+        // events
+        svg.selectAll("rect #intervals")
+            .data(EVENTS)
+            .enter()
+            .append('circle')
+            .attr('r', 4)
+            .attr('class', 'event')
+            .attr('fill', d => (d.color))
+            .attr('transform', d => (`translate(${this.date(d.at)}, ${(h/2) + 45})`))
+        
+        svg.selectAll("rect #intervals")
+            .data(EVENTS)
+            .enter()
+            .append('svg:text')
+            .text(d => (d.label))
+            .attr('class', 'event-label')
+            .attr('fill', d => (d.color))
+            .attr("transform", d => (`translate(${this.date(d.at)}, ${h/2 + 70})`));
     }
     date(d) {
         return (((new Date(d) / yearMs) * 12 * 3) + ((new Date(0).setFullYear(1, 0, 0) / yearMs) * 12 * 3) * -1)
