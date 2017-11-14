@@ -34,8 +34,8 @@ class Timeline {
                 svg.append("svg:rect")
                     .attr("class", "x axis")
                     .attr("width", (12 * 3 * 10) - 50)
-                    .attr("height", 5)
-                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 11) + ")")
+                    .attr("height", 3)
+                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 13) + ")")
 
             }
         }
@@ -81,6 +81,7 @@ class Timeline {
             .enter()
             .append('svg:text')
             .text(d => (d.label))
+            .attr('width', 10)
             .attr('class', 'event-label')
             .attr('fill', d => (d.color))
             .attr("transform", d => (`translate(${this.date(d.at)}, ${h/2 + 70})`));

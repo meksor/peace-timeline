@@ -34,7 +34,7 @@ rect, g {
     font-weight: bold;
     text-anchor: middle;
 }
-.tick {
+.tick line {
     stroke: rgba(0,0,0,0);
 }
 .domain {
