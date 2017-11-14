@@ -65,9 +65,21 @@ const EVENTS = [
         type: Timeline.TYPE.POINT,
         at: "1558-07-13",
         color: "rgba(255, 0, 0, 1)"
-    },  	
+    }, {
+        label: 'Battle of Sissek',
+        description: 'Austria defeats the Turks.', 
+        type: Timeline.TYPE.POINT,
+        at: "1593-06-22",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'Battle of Mezökeresztes',
+        description: 'Turkey defeats the Austrians',
+        type: Timeline.TYPE.POINT,
+        at: "1596-10-23",
+        color: "rgba(255, 0, 0, 1)"
+    }
 ];
- 
+
 const INTERVALS = [{
         label: 'Hungarian Wars',
         type: Timeline.TYPE.INTERVAL,
@@ -92,50 +104,56 @@ const INTERVALS = [{
         from: "1189-01-01",
         to: "1192-01-01",
         color: "rgba(255, 0, 0, 1)"
-    }, { 
-        label: 'First Austrian Turk War',
+    }, {
+        label: 'Italy Wars',
+        type: Timeline.TYPE.INTERVAL,
+        from: "1494-01-01",
+        to: "1559-01-01",
+        color: "rgba(255, 0, 0, 1)"
+    }, {
+        label: 'First Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1526-01-01",
         to: "1555-01-01",
         color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Second Austrian Turk War',
+        label: 'Second Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1566-01-01",
         to: "1568-01-01",
         color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Third Austrian Turk War',
+        label: 'Third Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1593-01-01",
         to: "1606-01-01",
         color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Fourth Austrian Turk War',
+        label: 'Fourth Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1663-01-01",
         to: "1664-01-01",
         color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Fifth Austrian Turk War',
+        label: 'Fifth Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1683-01-01",
         to: "1699-01-01",
         color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Sixth Austrian Turk War',
+        label: 'Sixth Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1714-01-01",
         to: "1718-01-01",
         color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Seventh Austrian Turk War',
+        label: 'Seventh Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1735-01-01",
         to: "1769-01-01",
         color: "rgba(255, 0, 0, 1)"
     }, {
-        label: 'Eighth Austrian Turk War',
+        label: 'Eighth Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
         from: "1787-01-01",
         to: "1792-01-01",
