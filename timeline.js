@@ -21,14 +21,13 @@ class Timeline {
 
         const svgContainer = d3.select(element)
             .append('svg:svg')
-            .attr('width' , w + 200)
+            .attr('width' , w)
             .attr('height' , h);
         
         const svg = svgContainer
             .append('svg:svg')
             .attr('width' , w)
-            .attr('height' , h)
-            .attr('translate' , 'transform(100, 0)');
+            .attr('height' , h);
 
         // fake axis
         for (var i=0; i<(years); i++) {
