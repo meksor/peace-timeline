@@ -12,9 +12,9 @@ var demo = {
 	speed: 1,
 	// - color of particles
 	color: {
-		r: '255',
-		g: '0',
-		b: '0',
+		r: '189',
+		g: '195',
+		b: '199',
 		a: '0.5'
 	},
 	
@@ -270,7 +270,7 @@ demo.updateCursor = function(x, y) {
 	y /= demo.height;
 	var y_inverse = (1 - y);
 	
-	demo.drop_delay = y_inverse*y_inverse*y_inverse * 300 + 2;
+	// demo.drop_delay = y_inverse*y_inverse*y_inverse * 300 + 2;
 	demo.wind = (x - 0.5) * 20;
 }
 
@@ -365,8 +365,8 @@ var checkScrollSpeed = (function(settings){
 
 // listen to "scroll" event
 window.onscroll = function(){
-  demo.speed = clamp(Math.abs(checkScrollSpeed() / 5), 0.01, 6)
-  demo.wind += clamp(Math.abs(checkScrollSpeed() / 5), 0.01, 6)
+  demo.speed = clamp(Math.abs(checkScrollSpeed()/10), 0.01, 6)
+  demo.wind += clamp(Math.abs(checkScrollSpeed()/10), 0.01, 6)
 };
 
 
