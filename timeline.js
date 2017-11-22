@@ -1,9 +1,10 @@
 const yearMs = (1000 * 60 * 60 * 24 * 365);
 
 class Timeline {
-    constructor(element, INTERVALS, EVENTS) {
+    constructor(element, INTERVALS, EVENTS, COLORS) {
         element.classList.add('timeline');
         INTERVALS = this.computeOverlap(INTERVALS);
+        INTERVALS = this.colorOverlap(INTERVALS, COLORS);
 
         const minDt = new Date(0);
         minDt.setFullYear(0);
@@ -162,6 +163,12 @@ class Timeline {
             }
         });
         return data;
+    }
+    colorOverlap(data, colors) {
+        data.forEach(function(dataItem, index) {
+            data[index].color = colors[dataItem.overlap - 1];
+        });
+        return data
     }
     yearString(d) {
         return parseInt(d.split('-')[0]).toString()
