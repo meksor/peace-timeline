@@ -1,4 +1,5 @@
 const yearMs = (1000 * 60 * 60 * 24 * 365);
+let lastInfoboxLocation = 0
 
 class Timeline {
     constructor(element, INTERVALS, EVENTS, COLORS) {
@@ -20,12 +21,7 @@ class Timeline {
             .range([0, w])
             .domain([minDt, maxDt]);
 
-        const svgContainer = d3.select(element)
-            .append('svg:svg')
-            .attr('width' , w)
-            .attr('height' , h);
-        
-        const svg = svgContainer
+        const svg = d3.select(element)
             .append('svg:svg')
             .attr('width' , w)
             .attr('height' , h);
@@ -79,7 +75,7 @@ class Timeline {
             .text(d => (d.label))
             .attr('class', 'interval-label interval-text')
             .attr('fill', d => (d.color))
-            .attr('transform' , d => {console.log((d.from)); return `translate(${this.date(d.from)}, ${axisY - (vhToPx(10.6) + (vhToPx(4)*d.overlap))})`});
+            .attr('transform' , d => {return `translate(${this.date(d.from)}, ${axisY - (vhToPx(10.6) + (vhToPx(4)*d.overlap))})`});
         
         svg.selectAll('rect #intervals' )
             .data(INTERVALS)
@@ -90,35 +86,42 @@ class Timeline {
             .attr('fill', 'white')
             .attr('transform' , d => {return `translate(${this.date(d.from)}, ${axisY - (vhToPx(12.6) + (vhToPx(4)*d.overlap))})`});
 
-        const eventLabel = d3.select("body")
-            .append("div")
-            .attr("id", "tooltip")
-            .attr('width', '64px')
-            .attr('height', '64px')
-            .style('opacity', 0)
-
-        // events
-        const showEventLabel = (d) => {
-            const x = this.date(d.at);
-            const y = h/2 + 20;
-            console.log('over')
-
-            eventLabel.attr('transform', `translate(${x} ,${y})`)
-                .attr('fill', 'white')
-                .text(d.label)
+        const infoBox = d3.select('body')
+            .insert("div")
+            .attr("id", "infobox")
         
-            eventLabel.transition()
-                .duration(200)
+        const infoBoxTitle = infoBox.append('text')
+            .attr('class', 'info-box-title')
+               
+        infoBox.append('br')
+
+        const infoBoxDescription = infoBox.append('text')
+            .attr('class', 'info-box-description')
+        
+        // events
+        const showInfoBox = (d) => {
+            const x = this.date(d.at);
+
+            infoBoxTitle.text(d.label)
+            infoBoxDescription.text(d.description)
+
+            const interpolation = d3.interpolateString(`translate(${lastInfoboxLocation}px, 0)`, `translate(${x}px, 0)`)
+
+            infoBox.transition()
+                .duration(200) 
+                .styleTween('transform', d => (interpolation))
                 .style('opacity', 1)
+            
+            lastInfoboxLocation = x
         }
 
-        const hideEventLabel = (d) => {
-            eventLabel.transition()
+        const hideInfoBox = (d) => {
+            infoBox.transition()
                 .duration(200)
                 .style('opacity', 0)
         }
 
-        svg.selectAll('rect #events' )
+        svg.selectAll('rect #events')
             .data(EVENTS)
             .enter()
             .append('rect')
@@ -136,8 +139,8 @@ class Timeline {
             .attr('fill', 'white')
             .attr('height', '1.3vh')
             .attr('transform' , d => (`translate(${this.date(d.at) - 12}, ${axisY + 15})`))
-            .on('mouseover', showEventLabel)
-            .on('mouseout', hideEventLabel);
+            .on('mouseover', showInfoBox)
+            .on('mouseout', hideInfoBox);
 
         /*
             .append('svg:text')
