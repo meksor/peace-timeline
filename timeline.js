@@ -10,35 +10,54 @@ class Timeline {
         const maxDt = new Date();
 
         const years = ((maxDt - minDt) / yearMs) -2; // milliseconds
-        const w = (years * 12 ), // 3px / month
-              h = vhTOpx(44.72);
+        const w = (years * 12), // 3px / month
+              h = vhToPx(44.72);
+            
+        const axisY = vhToPx(37)
 
         const x = d3.scaleTime()
             .range([0, w])
             .domain([minDt, maxDt]);
 
-        const svg = d3.select(element)
+        const svgContainer = d3.select(element)
             .append('svg:svg')
-            .attr('width' , w+1)
+            .attr('width' , w + 200)
             .attr('height' , h);
         
+        const svg = svgContainer
+            .append('svg:svg')
+            .attr('width' , w)
+            .attr('height' , h)
+            .attr('translate' , 'transform(100, 0)');
+
         // fake axis
         for (var i=0; i<(years); i++) {
             if (i%100==0) {
+                let factor = 1
+                if (i+100 > years){
+                    factor = (years - i) / 100
+
+                    svg.append('svg:text')
+                        .text(Math.round(years))
+                        .attr('class' , 'x axis-text')
+                        .attr('x' , ((12) * years))
+                        .attr('y' , (axisY + 8));
+                }
+
                 svg.append('svg:rect' )
                     .attr('class' , 'x axis' )
-                    .attr('width' , (12 * 10 * 10) - 70)
+                    .attr('width' , (12 * 10 * 10 * factor) - 60)
                     .attr('height' , 3)
-                    .attr('x' , ((12) * i) + 35) // magic numbers are magical
-                    .attr('y' , ((h/2)))
-                
+                    .attr('x' , ((12) * i) + 30) // magic numbers are magical
+                    .attr('y' , axisY);
+
                 svg.append('svg:text')
                     .text(i)
                     .attr('class' , 'x axis-text' )
                     .attr('x' , ((12) * i)) // magic numbers are magical
-                    .attr('y' , ((h/2) + 10))
-                
-                    //.attr(' transform' , ' translate('  + (((12 ) * i) + 25 + ((i)*-0.0111)) + ' ,'  + ((h/2) + 13) + ' )' )
+                    .attr('y' , (axisY + 8));
+
+                    //.attr(' transform' , ' translate('  + (((12 ) * i) + 25 + ((i)*-0.0111)) + ' ,'  + (axisY + 13) + ' )' )
             }
         }
 
@@ -47,10 +66,10 @@ class Timeline {
             .data(INTERVALS)
             .enter()
             .append('rect')
-            .attr('height', 15)
+            .attr('height', '2vh')
             .attr('class', 'interval')
             .attr('fill', d => (d.color))
-            .attr('transform', d => (`translate(${this.date(d.from)}, ${h/2 -(35 + (15*d.overlap))})`))
+            .attr('transform', d => (`translate(${this.date(d.from)}, ${axisY -(vhToPx(4) + (vhToPx(2)*d.overlap))})`))
             .attr('width', d => {return this.date(d.to) - this.date(d.from)})
 
         svg.selectAll('rect #intervals')
@@ -58,19 +77,18 @@ class Timeline {
             .enter()
             .append('svg:text')
             .text(d => (d.label))
-            .attr('class', 'interval-label')
+            .attr('class', 'interval-label interval-text')
             .attr('fill', d => (d.color))
-            .attr('transform' , d => {console.log((d.from)); return `translate(${this.date(d.from)}, ${(h/2) - (120 + (30*d.overlap))})`});
+            .attr('transform' , d => {console.log((d.from)); return `translate(${this.date(d.from)}, ${axisY - (vhToPx(10.6) + (vhToPx(4)*d.overlap))})`});
         
         svg.selectAll('rect #intervals' )
             .data(INTERVALS)
             .enter()
             .append('svg:text')
-            .text(d => (this.yearString(d) + ' - ' + this.yearString(d)))
-            .attr('class', 'interval-label')
+            .text(d => (this.yearString(d.from) + ' - ' + this.yearString(d.to)))
+            .attr('class', 'interval-label interval-years')
             .attr('fill', 'white')
-            .attr('transform' , d => {return `translate(${this.date(d.from)}, ${(h/2) - (140 + (30*d.overlap))})`});
-        
+            .attr('transform' , d => {return `translate(${this.date(d.from)}, ${axisY - (vhToPx(12.6) + (vhToPx(4)*d.overlap))})`});
 
         const eventLabel = d3.select("body")
             .append("div")
@@ -108,7 +126,7 @@ class Timeline {
             .attr('width', 4)
             .attr('class', 'event')
             .attr('fill', 'white')
-            .attr('transform', d => (`translate(${this.date(d.at)}, ${(h/2)})`))
+            .attr('transform', d => (`translate(${this.date(d.at)}, ${axisY})`))
 
         svg.selectAll('rect #events' )
             .data(EVENTS)
@@ -117,11 +135,9 @@ class Timeline {
             .attr('xlink:href', d => (d.icon))
             .attr('fill', 'white')
             .attr('height', '1.3vh')
-            .attr('transform' , d => (`translate(${this.date(d.at) - 12}, ${h/2 + 15})`))
+            .attr('transform' , d => (`translate(${this.date(d.at) - 12}, ${axisY + 15})`))
             .on('mouseover', showEventLabel)
             .on('mouseout', hideEventLabel);
-            
-       
 
         /*
             .append('svg:text')
@@ -149,7 +165,7 @@ class Timeline {
         return data;
     }
     yearString(d) {
-        return parseInt(d.from.split('-')[0]).toString()
+        return parseInt(d.split('-')[0]).toString()
     }
     date(d) {
         return (((new Date(d) / yearMs) * 12 ) + ((new Date(0).setFullYear(1, 0, 0) / yearMs) * 12 ) * -1)
@@ -171,7 +187,7 @@ Timeline.TYPE = {
     INTERVAL: Symbol()
 };
 
- function vhTOpx(value) {
+ function vhToPx(value) {
     var w = window,
       d = document,
       e = d.documentElement,

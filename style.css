@@ -17,37 +17,34 @@ canvas, #instructions {
 	background-position: center center;
 	background-size: contain;
 }
-
-svg {
-    font-size: 2em;
-}
 #timeline {
     position: absolute;
     bottom: 0;
+    padding-right: 10vh;
+    padding-left: 10vh;
 }
+
 .axis {
     color: white;
     fill: white;
 }
-rect, g {
+
+rect, g, svg {
     overflow: visible;
 }
 
 .axis-text, .interval-label, .event-label {
     font-family: 'Lato';
+    font-size: 2vh;
 }
-
-.interval-label, .event-label {
-    font-size: 20px;
+interval-text  {
     font-weight: bold;
 }
 
 .axis-text {
     text-anchor: middle;
     fill: white;
-    font-size: 24px;
 }
-
 .tick line {
     stroke: rgba(0,0,0,0);
 }
