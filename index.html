@@ -15,10 +15,11 @@
     </head>
 
     <body>
+        <div id='timeline'></div>
         <canvas id="canvas">Canvas is not supported in your browser</canvas>
     </body>
     <script>
-        let element = document.getElementsByTagName('body')[0];
-        let tl = new Timeline(element, INTERVALS, EVENTS);
+        let element = document.getElementById('timeline');
+        let tl = new Timeline(element, INTERVALS, EVENTS, COLORS);
     </script>
 </html>
