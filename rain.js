@@ -154,7 +154,7 @@ demo.draw = function() {
 	var demo = window.demo;
 	var width = demo.width;
 	var height = demo.height;
-	var dpr = demo.dpr;
+	var dpr = d2emo.dpr;
 	var rain = demo.rain;
 	var drops = demo.drops;
 	var ctx = demo.ctx;
@@ -365,8 +365,8 @@ var checkScrollSpeed = (function(settings){
 
 // listen to "scroll" event
 window.onscroll = function(){
-  demo.speed = clamp(Math.abs(checkScrollSpeed()/10), 0.01, 6)
-  demo.wind += clamp(Math.abs(checkScrollSpeed()/10), 0.01, 6)
+  demo.speed = clamp(Math.abs(checkScrollSpeed()/10), 0.01, 4)
+  demo.wind += clamp(Math.abs(checkScrollSpeed()/10), 0.01, 4)
 };
 
 

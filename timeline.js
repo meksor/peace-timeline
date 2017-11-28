@@ -36,7 +36,6 @@ class Timeline {
                     .attr("width", (12 * 3 * 10) - 50)
                     .attr("height", 3)
                     .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 13) + ")")
-
             }
         }
 
@@ -55,7 +54,9 @@ class Timeline {
             .attr('class', 'interval')
             .attr('fill', d => (d.color))
             .attr('transform', d => (`translate(${this.date(d.from)}, ${h/2 - 20})`))
-            .attr('width', d => {return this.date(d.to) - this.date(d.from)});
+            .attr('width', d => {return this.date(d.to) - this.date(d.from)})
+            .attr('id', d => {return this.date(d.to) - this.date(d.from)});
+
         
         svg.selectAll("rect #intervals")
             .data(INTERVALS)
@@ -84,7 +85,8 @@ class Timeline {
             .attr('width', 10)
             .attr('class', 'event-label')
             .attr('fill', d => (d.color))
-            .attr("transform", d => (`translate(${this.date(d.at)}, ${h/2 + 70})`));
+            .attr("transform", d => (`translate(${this.date(d.at)}, ${h/2 + 70})`))
+            .attr("id", d => (d.from));
     }
     date(d) {
         return (((new Date(d) / yearMs) * 12 * 3) + ((new Date(0).setFullYear(1, 0, 0) / yearMs) * 12 * 3) * -1)

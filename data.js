@@ -25,7 +25,7 @@ const EVENTS = [
         color: "rgba(255, 0, 0, 1)"
     }, {
         label: 'Heinrich II. Jasomirgott and his brother Otto von Freising join the crusade.',
-        description: 'Heinrich II. Jasomirgott and his brother Otto von Freising join the second crusade. Heinrich later marries a byzantine princess.',
+        description: 'Heinrich II. Jasomirgott and his brother Otato von Freising join the second crusade. Heinrich later marries a byzantine princess.',
         type: Timeline.TYPE.POINT,
         at: "1147-01-01",
         color: "rgba(255, 0, 0, 1)"
@@ -115,7 +115,8 @@ const INTERVALS = [{
         type: Timeline.TYPE.INTERVAL,
         from: "1526-01-01",
         to: "1555-01-01",
-        color: "rgba(255, 0, 0, 1)"
+        color: "rgba(255, 0, 0, 1)",
+        animTriggered: 'rain'        
     }, {
         label: 'Second Austrian-Turk War',
         type: Timeline.TYPE.INTERVAL,
