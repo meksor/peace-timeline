@@ -14,7 +14,7 @@ class Timeline {
         const years = ((maxDt - minDt) / yearMs) -2; // milliseconds
         const w = (years * 12), // 3px / month
               h = vhToPx(44.72);
-            
+        
         const axisY = vhToPx(37)
 
         const x = d3.scaleTime()
@@ -28,14 +28,6 @@ class Timeline {
 
         // fake axis
         for (var i=0; i<(years); i++) {
-<<<<<<< HEAD
-            if (i%10==0) {
-                svg.append("svg:rect")
-                    .attr("class", "x axis")
-                    .attr("width", (12 * 3 * 10) - 50)
-                    .attr("height", 3)
-                    .attr("transform", "translate(" + (((12 * 3) * i) + 25 + ((i)*-0.0111)) + "," + ((h/2) + 13) + ")")
-=======
             if (i%100==0) {
                 let factor = 1
                 if (i+100 > years){
@@ -62,7 +54,6 @@ class Timeline {
                     .attr('y' , (axisY + 8));
 
                     //.attr(' transform' , ' translate('  + (((12 ) * i) + 25 + ((i)*-0.0111)) + ' ,'  + (axisY + 13) + ' )' )
->>>>>>> 4199b93ac8313f97a84ddd7fb41e190e758be5cc
             }
         }
 
@@ -74,24 +65,16 @@ class Timeline {
             .attr('height', '2vh')
             .attr('class', 'interval')
             .attr('fill', d => (d.color))
-<<<<<<< HEAD
-            .attr('transform', d => (`translate(${this.date(d.from)}, ${h/2 - 20})`))
-            .attr('width', d => {return this.date(d.to) - this.date(d.from)})
-            .attr('id', d => {return this.date(d.to) - this.date(d.from)});
-
-        
-        svg.selectAll("rect #intervals")
-=======
             .attr('transform', d => (`translate(${this.date(d.from)}, ${axisY -(vhToPx(4) + (vhToPx(2)*d.overlap))})`))
             .attr('width', d => {return this.date(d.to) - this.date(d.from)})
 
         svg.selectAll('rect #intervals')
->>>>>>> 4199b93ac8313f97a84ddd7fb41e190e758be5cc
             .data(INTERVALS)
             .enter()
             .append('svg:text')
             .text(d => (d.label))
             .attr('class', 'interval-label interval-text')
+            .attr('id', d => (d.from))
             .attr('fill', d => (d.color))
             .attr('transform' , d => {return `translate(${this.date(d.from)}, ${axisY - (vhToPx(10.6) + (vhToPx(4)*d.overlap))})`});
         
@@ -166,10 +149,6 @@ class Timeline {
             .attr('width', 10)
             .attr('class', 'event-label')
             .attr('fill', d => (d.color))
-<<<<<<< HEAD
-            .attr("transform", d => (`translate(${this.date(d.at)}, ${h/2 + 70})`))
-            .attr("id", d => (d.from));
-=======
         */
     }
     computeOverlap(data) {
@@ -197,7 +176,6 @@ class Timeline {
     }
     yearString(d) {
         return parseInt(d.split('-')[0]).toString()
->>>>>>> 4199b93ac8313f97a84ddd7fb41e190e758be5cc
     }
     date(d) {
         return (((new Date(d) / yearMs) * 12 ) + ((new Date(0).setFullYear(1, 0, 0) / yearMs) * 12 ) * -1)

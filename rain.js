@@ -1,7 +1,6 @@
 // initialize
 
 document.addEventListener("DOMContentLoaded", function() {
-	demo.init();
 	window.addEventListener('resize', demo.resize);
 });
 
@@ -12,9 +11,9 @@ var demo = {
 	speed: 1,
 	// - color of particles
 	color: {
-		r: '189',
-		g: '195',
-		b: '199',
+		r: '0',
+		g: '0',
+		b: '0',
 		a: '0.5'
 	},
 	
@@ -154,7 +153,7 @@ demo.draw = function() {
 	var demo = window.demo;
 	var width = demo.width;
 	var height = demo.height;
-	var dpr = d2emo.dpr;
+	var dpr = demo.dpr;
 	var rain = demo.rain;
 	var drops = demo.drops;
 	var ctx = demo.ctx;

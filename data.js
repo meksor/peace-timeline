@@ -95,7 +95,8 @@ const INTERVALS = [{
         from: "0907-01-01",
         to: "0970-01-01",
         color: DEFAULT_COLOR,
-        overlap: 1
+        overlap: 1,
+        animTriggered: 'rain'
     }, {
         label: 'The First Crusade',
         type: Timeline.TYPE.INTERVAL,
