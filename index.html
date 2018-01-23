@@ -6,20 +6,71 @@
         <script src="https://d3js.org/d3.v4.js"></script>
         <script src="https://d3js.org/d3-time.v1.js"></script>
         <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
-        <script src="effects.js"></script>
-        <script src="animationLoop.js"></script>
-
-        <script src="timeline.js"></script>
-        <script src="data.js"></script>
-        <!-- <script src="rain.js"></script> -->
+        <script src="noframework.waypoints.min.js"></script>   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.4.0/rellax.js"></script>
     </head>
 
     <body>
-        <div id="timeline"></div>
+        <div id='timeline'></div>
+            <div id="front-black"></div>
+            <div id="foreground" class="rellax" data-rellax-speed="8" data-rellax-zindex="3">
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>
+                <div class="tent-foreground"></div>  
+            </div>
+            <div id="middleground" class="rellax" data-rellax-speed="-50" data-rellax-zindex="2">
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>
+                <div class="tent-middleground"></div>  
+            </div>
+            <div id="background" class="rellax" data-rellax-speed="-80" data-rellax-zindex="1">
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+                <div class="tent-background"></div>
+            </div>
+        </div>
+        
+        <canvas id="canvas" ></canvas>
     </body>
+    <script src="timeline.js"></script>
+    <script src="data.js"></script>
+    <script src="rain.js"></script>
+    <script src="animations.js"></script>
+    <script src="effects.js"></script>
     <script>
         let element = document.getElementById('timeline');
         let tl = new Timeline(element, INTERVALS, EVENTS, COLORS);
-    </script>
+
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+    </script>        
 </html>

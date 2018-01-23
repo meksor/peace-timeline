@@ -14,7 +14,7 @@ class Timeline {
         const years = ((maxDt - minDt) / yearMs) -2; // milliseconds
         const w = (years * 12), // 3px / month
               h = vhToPx(44.72);
-            
+        
         const axisY = vhToPx(37)
 
         const x = d3.scaleTime()
@@ -74,6 +74,7 @@ class Timeline {
             .append('svg:text')
             .text(d => (d.label))
             .attr('class', 'interval-label interval-text')
+            .attr('id', d => (d.from))
             .attr('fill', d => (d.color))
             .attr('transform' , d => {return `translate(${this.date(d.from)}, ${axisY - (vhToPx(10.6) + (vhToPx(4)*d.overlap))})`});
         

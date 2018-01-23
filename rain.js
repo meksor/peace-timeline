@@ -1,7 +1,6 @@
 // initialize
 
 document.addEventListener("DOMContentLoaded", function() {
-	demo.init();
 	window.addEventListener('resize', demo.resize);
 });
 
@@ -12,9 +11,9 @@ var demo = {
 	speed: 1,
 	// - color of particles
 	color: {
-		r: '189',
-		g: '195',
-		b: '199',
+		r: '0',
+		g: '0',
+		b: '0',
 		a: '0.5'
 	},
 	
@@ -365,8 +364,8 @@ var checkScrollSpeed = (function(settings){
 
 // listen to "scroll" event
 window.onscroll = function(){
-  demo.speed = clamp(Math.abs(checkScrollSpeed()/10), 0.01, 6)
-  demo.wind += clamp(Math.abs(checkScrollSpeed()/10), 0.01, 6)
+  demo.speed = clamp(Math.abs(checkScrollSpeed()/10), 0.01, 4)
+  demo.wind += clamp(Math.abs(checkScrollSpeed()/10), 0.01, 4)
 };
 
 
