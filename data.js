@@ -98,9 +98,7 @@ const EVENTS = [
         type: Timeline.TYPE.POINT,
         at: "1690-10-06",
         icon: CANNON_ICON
-    }, 
-    
-    {
+    }, {
         label: 'Landing at Barcelona',
         description: 'When King Charles II of Spain died without an heir in November 1700, he was succeeded in Madrid by the French prince Philip V. This successor was contested by England, the Dutch Republic, the Holy Roman Empire and Portugal which favored Austrian prince Charles III as new King, leading to the War of the Spanish Succession.',
         type: Timeline.TYPE.POINT,
@@ -244,6 +242,4 @@ const INTERVALS = [{
         color: DEFAULT_COLOR,
         overlap: 1
     }
-    
-    
-    ]
+]
