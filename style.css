@@ -6,10 +6,10 @@ body{
     width: 100%;
     transition: background-color 1s
 }
-canvas, #instructions {
+canvas {
 	position: absolute;
-	width: 100%;
-	height: 63vh;
+	width: 100% !important;
+	height: 63vh !important;
     margin-bottom: 37vh;
     position: fixed;
 }
@@ -61,9 +61,6 @@ rect, g, svg {
 .axis-text, .interval-label, .event-label, .info-box-title, .info-box-description {
     font-family: 'Lato';
     font-size: 2vh;
-}
-
-.info-box-description {
 }
 
 .interval-text, .info-box-title  {
