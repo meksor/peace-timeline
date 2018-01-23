@@ -95,15 +95,8 @@ rect, g, svg {
     width: 2805vh;
 }
 
-
 #background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    width: 2805vh;
+
 }
 
 
@@ -129,7 +122,7 @@ rect, g, svg {
     
 }    
 
-.tent-background {
+.tent-background1 {
     background-image: url('assets/tent_bg.svg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -137,35 +130,34 @@ rect, g, svg {
     height: 100%;
     float: left;
     background-size: 100% auto;
-    
 }    
 
+ 
 
-
-#middleground {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+#front-black {
+    background-color: black;
+    z-index: 200;
     width: 2805vh;
+    height: 220px;
+    position: absolute;
+    bottom: 0
 }
+
 
 .rellax {
 	position: absolute;
 	width: 100%;
 	transform: translateX(var(--translateY));
-	will-change: transform;
-}
-
-
-
-#front-black {
-    background-color: black;
-    z-index: 200;
-    width: 2805vw;
-    height: 220px;
+    will-change: transform;
     position: absolute;
-    bottom: 0
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 2805vh;
+
 }
+
+
+
